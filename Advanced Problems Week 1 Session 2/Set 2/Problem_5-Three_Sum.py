@@ -6,14 +6,21 @@
 
 def three_sum(nums):
     triplets = []
-    start = 0
-    end2 = len(nums)-1
-    end1 = len(nums)-2
-    while start < end1:
-        if nums[start] != nums[end1] and nums[start] != nums[end2] and nums[end1] != nums[end2] and nums[start] + nums[end1] + nums[end2] == 0:
-            triplets.append([nums[start], nums[end1], nums[end2]])
-        end1 -= 1
-        end2 -= 1
+    nums.sort()
+    p1 = 0
+    p2 = 1
+    p3 = 2
+    while p1 < len(nums)-2:
+        while p2 < len(nums)-1:
+            while p3 < len(nums):
+                if (nums[p1] + nums[p2] + nums[p3]) == 0 and ([nums[p1], nums[p2], nums[p3]]) not in triplets:
+                    triplets.append([nums[p1], nums[p2], nums[p3]])
+                p3 += 1
+            p2 += 1
+            p3 = p2+1
+        p1 += 1
+        p2 = p1+1
+        p3 = p2+1
     return triplets
         
 
